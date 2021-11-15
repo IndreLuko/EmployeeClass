@@ -28,5 +28,3 @@ while selection != 0:
         employee_manager.all_existing()
     elif selection == 6:
         employee_manager.change_phone(Employee.selection_phone_number(), Employee.selection_new_phone_number())
-    elif selection == 7:
-        print('This is a new selection')
