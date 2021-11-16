@@ -1,6 +1,6 @@
-***Employee Manager app***
+# Employee Manager app
 
-_Menu with functions for hiring, terminating, deleting, listing and editing employee records_
+## _Menu with functions for hiring, terminating, deleting, listing and editing employee records_
 
 Menu list:
 1. Hire new employee
