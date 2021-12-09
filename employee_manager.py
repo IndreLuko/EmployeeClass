@@ -1,6 +1,7 @@
 from employee_class import Employee
 import utils
 
+
 class EmployeeManager:
 
     def __init__(self):
@@ -36,6 +37,7 @@ class EmployeeManager:
                 index = self.employee_list.index(employee)
                 self.employee_list.pop(index)
                 print(f"\nEmployee ID {employee_id} has been deleted!\n")
+                return employee_id
                 #TD (Technical Debt) - might be improved in future
 
     def terminate(self, employee_id):
