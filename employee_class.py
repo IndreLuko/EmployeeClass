@@ -1,6 +1,7 @@
 from datetime import datetime
 from datetime import date
-import random
+import utils
+import constant
 
 
 class Employee:
@@ -25,7 +26,7 @@ class Employee:
         while True:
             try:
                 selection = int(input('Enter your choice here (1, 2, 3, 4, 5 or 6): '))
-                if 0 <= int(selection) < 16:
+                if 0 <= int(selection) <= 13:
                     return selection
                 else:
                     print("Invalid format. Please enter number between 1 and 6")
@@ -36,7 +37,7 @@ class Employee:
     def selection_name():
         while True:
             try:
-                name = Employee.validate_name(str(input("Name: ")))
+                name = utils.validate_alpha_chars(str(input("Name: ")))
                 if name:
                     return name
             except ValueError:
@@ -46,7 +47,7 @@ class Employee:
     def selection_surname():
         while True:
             try:
-                surname = Employee.validate_name(str(input("Surname: ")))
+                surname = utils.validate_alpha_chars(str(input("Surname: ")))
                 if surname:
                     return surname
             except ValueError:
@@ -60,18 +61,18 @@ class Employee:
                 if 18 < int(age) < 100:
                     return age
                 else:
-                    print("Invalid format! Age must be max_number_index number between 18 and 100")
+                    print("Invalid format! Age must be a number between 18 and 100")
             except ValueError:
-                print("Invalid format! Age must be max_number_index number between 18 and 100")
+                print("Invalid format! Age must be a number between 18 and 100")
 
     @staticmethod
     def selection_employment_date():
         while True:
             try:
                 employment_date = datetime.strptime(input("Employment start date in a format YYYY-MM-DD: ")
-                                                    , '%Y-%m-%d').strftime('%Y-%m-%d')
-                if employment_date is not None:
-                    if employment_date <= date.today().strftime('%Y-%m-%d'):
+                                                    , constant.DATE_FORMAT).strftime(constant.DATE_FORMAT)
+                if employment_date:
+                    if employment_date <= date.today().strftime(constant.DATE_FORMAT):
                         return employment_date
                     else:
                         print("Error! Employment date cannot be in future")
@@ -87,7 +88,8 @@ class Employee:
                     return "N/A"
                 if day_of_leaving == "N/A":
                     return day_of_leaving
-                if day_of_leaving == datetime.strptime(day_of_leaving, '%Y-%m-%d').strftime('%Y-%m-%d'):
+                if day_of_leaving == datetime.strptime(day_of_leaving,
+                                                       constant.DATE_FORMAT).strftime(constant.DATE_FORMAT):
                     return day_of_leaving
             except ValueError:
                 print("Date of leaving format must be either YYYY-MM-DD or N/A")
@@ -96,55 +98,42 @@ class Employee:
     def selection_phone_number():
         while True:
             try:
-                Employee.validate_text(1)
-                phone = int(input(""))
-                if Employee.validate_phone(phone):
+                phone = Employee.__validate_phone(1)
+                if phone:
                     return phone
             except ValueError:
                 print('Invalid format! Phone number must be 9 digits long in a format 86xxxxxxx')
 
     @staticmethod
     def selection_new_phone_number():
-        try:
-            Employee.validate_text(0)
-            phone = int(input(""))
-            if Employee.validate_phone(phone):
-                return phone
-        except ValueError:
-            print('Invalid format! Phone number must be 9 digits long in a format 86xxxxxxx')
+        while True:
+            try:
+                phone = Employee.__validate_phone(0)
+                if phone:
+                    return phone
+            except ValueError:
+                print('Invalid format! Phone number must be 9 digits long in a format 86xxxxxxx')
 
     @staticmethod
     def selection_actual_day_of_leaving():
         while True:
             try:
                 day_of_leaving = datetime.strptime(input("Enter actual date of leaving: "),
-                                                   '%Y-%m-%d').strftime('%Y-%m-%d')
+                                                   constant.DATE_FORMAT).strftime(constant.DATE_FORMAT)
                 return day_of_leaving
             except ValueError:
                 print("Incorrect format! Date format must be YYYY MM DD")
 
     @staticmethod
-    def validate_phone(phone):
-        if len(str(phone)) != 9:
-            print('Phone number must be 9 digits long in max_number_index format 86xxxxxxx')
-        else:
-            return phone
-
-    @staticmethod
-    def validate_text(text):
+    def __validate_phone(text):
         if text == 1:
-            print("Please enter current phone number below")
+            phone = int(input("Please enter current phone number: "))
+            if utils.validate_length(phone, 9):
+                return phone
         if text == 0:
-            print("Please enter new phone number")
+            phone = int(input("Please enter new phone number: "))
+            if utils.validate_length(phone, 9):
+                return phone
 
-    @staticmethod
-    def validate_name(name):
-        if name.isalpha():
-            return name
-        else:
-            print("Error! Only alphabetical characters allowed.")
 
-    @staticmethod
-    def id_randomizer():
-        random_id = random.randint(1000, 10000)
-        return random_id
+

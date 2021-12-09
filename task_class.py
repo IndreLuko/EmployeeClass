@@ -1,4 +1,5 @@
 import random
+import utils
 
 
 class Task:
@@ -14,7 +15,7 @@ class Task:
 
     def print(self):
         print(
-            f'Task ID: {self.task_id}\nTask name: {self.task_name}\nDescription: {self.definition}\n'
+            f'\nTask ID: {self.task_id}\nTask name: {self.task_name}\nDescription: {self.definition}\n'
             f'Priority: {self.priority}\nStatus: {self.status}\nCreation date: {self.creation_date}\n'
             f'Completion date: {self.completion_date}\nAssigned to: {self.assigned_to}\n'
         )
@@ -23,7 +24,7 @@ class Task:
     def selection_task_name():
         while True:
             try:
-                name = Task.validate_task_name(str(input("Task name: ")))
+                name = utils.validate_alpha_chars(str(input("Task name: ")))
                 if name:
                     return name
             except ValueError:
@@ -53,17 +54,7 @@ class Task:
             except ValueError:
                 print(f"Value error! Please enter valid priority number!")
 
-    @staticmethod
-    def id_randomizer():
-        random_id = random.randint(100, 1000)
-        return random_id
 
-    @staticmethod
-    def validate_task_name(task_name):
-        if task_name.isalpha():
-            return task_name
-        else:
-            print("Error! Name cannot be blank and only alphabetical characters allowed.")
 
 
 
