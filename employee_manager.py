@@ -1,5 +1,5 @@
 from employee_class import Employee
-
+import utils
 
 class EmployeeManager:
 
@@ -10,8 +10,10 @@ class EmployeeManager:
         for employee in self.employee_list:
             employee.print()
 
-    def hire_employee(self, name, surname, age, employment_date, day_of_leaving, phone_number):
-        new_hire = Employee(Employee.id_randomizer(), name, surname, age, employment_date, day_of_leaving, phone_number)
+    def hire_employee(self):
+        new_hire = Employee(utils.id_randomizer(), Employee.selection_name(), Employee.selection_surname(),
+                            Employee.selection_age(), Employee.selection_employment_date(),
+                            Employee.selection_day_of_leaving(), Employee.selection_phone_number())
         self.employee_list.append(new_hire)
         new_hire.print()
 
@@ -28,29 +30,30 @@ class EmployeeManager:
             Employee(9987, 'Raigardas', 'Vernt', 44, '2016-06-12', '2019-05-22', 865716998)
         ]
 
-    def delete(self, phone_number):
-        index = 0
+    def delete(self, employee_id):
         for employee in self.employee_list:
-            if employee.phone_number == phone_number:
+            if employee.employee_id == employee_id:
+                index = self.employee_list.index(employee)
                 self.employee_list.pop(index)
-            index += 1
+                print(f"\nEmployee ID {employee_id} has been deleted!\n")
+                #TD (Technical Debt) - might be improved in future
 
-    def terminate(self, phone_number, new_day_of_leaving):
+    def terminate(self, employee_id):
         for employee in self.employee_list:
-            if employee.phone_number == phone_number:
-                employee.day_of_leaving = new_day_of_leaving
+            if employee.employee_id == employee_id:
+                employee.day_of_leaving = Employee.selection_actual_day_of_leaving()
+                employee.print()
 
     def all_existing(self):
         print("All Active employees:")
         for employee in self.employee_list:
             if employee.day_of_leaving == 'N/A':
-                print("")
                 employee.print()
 
-    def change_phone(self, phone_number, new_number):
+    def change_phone(self):
         for employee in self.employee_list:
-            if employee.phone_number == phone_number:
-                employee.phone_number = new_number
+            if employee.phone_number == Employee.selection_phone_number():
+                employee.phone_number = Employee.selection_new_phone_number()
                 employee.print()
 
     def get_id(self):

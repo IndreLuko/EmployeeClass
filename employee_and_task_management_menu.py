@@ -25,27 +25,22 @@ task_manager = TaskManager()
 while selection != 0:
     selection = Employee.selection()
     if selection == 1:
-        employee_manager.hire_employee(
-            Employee.selection_name(), Employee.selection_surname(), Employee.selection_age(),
-            Employee.selection_employment_date(), Employee.selection_day_of_leaving(), Employee.selection_phone_number()
-        )
+        employee_manager.hire_employee()
     elif selection == 2:
         employee_manager.list()
     elif selection == 3:
-        employee_manager.delete(Employee.selection_phone_number())
+        employee_manager.delete(employee_manager.get_id())
         employee_manager.list()
     elif selection == 4:
-        employee_manager.terminate(Employee.selection_phone_number(), Employee.selection_actual_day_of_leaving())
-        employee_manager.list()
+        employee_manager.terminate(employee_manager.get_id())
     elif selection == 5:
         employee_manager.all_existing()
     elif selection == 6:
-        employee_manager.change_phone(Employee.selection_phone_number(), Employee.selection_new_phone_number())
+        employee_manager.change_phone()
     elif selection == 7:
-        print("")
         task_manager.list_tasks()
     elif selection == 8:
-        task_manager.new_task(Task.selection_task_name(), Task.selection_definition(), Task.selection_priority())
+        task_manager.new_task()
     elif selection == 9:
         task_manager.delete(task_manager.get_id())
         task_manager.list_tasks()
