@@ -29,8 +29,7 @@ while selection != 0:
     elif selection == 2:
         employee_manager.list()
     elif selection == 3:
-        employee_manager.delete(employee_manager.get_id())
-        employee_manager.list()
+        task_manager.unassign(employee_manager.delete(employee_manager.get_id()))
     elif selection == 4:
         employee_manager.terminate(employee_manager.get_id())
     elif selection == 5:
