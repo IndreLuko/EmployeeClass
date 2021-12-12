@@ -100,3 +100,10 @@ class TaskManager:
                 task.assigned_to = employee_id
                 task.status = constant.STATUS_IN_PROGRESS
                 print(f"Task {task.task_name} with ID {task.task_id} has been assigned to employee ID {employee_id}")
+
+    def unassign(self, employee_id):
+        for task in self.task_list:
+            if task.assigned_to == employee_id:
+                task.assigned_to = ""
+                task.status = constant.STATUS_NEW
+                print(f"Task {task.task_name} with ID {task.task_id} has been unassigned\n")
