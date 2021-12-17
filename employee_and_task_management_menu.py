@@ -17,7 +17,7 @@ print("10. Assign new task")
 print("11. Complete a task")
 print("12. List all completed tasks")
 print("13. Change task status")
-print("14. Extract single employee's record")
+print("14. Extract individual employee's record")
 print('0 to quit')
 
 selection = 1

@@ -16,5 +16,6 @@ Menu list:
 11. Complete a task
 12. List all completed tasks
 13. Change task status
+14. Extract individual employee's record
 
 ![Easy records management](https://api.creativecommons.engineering/v1/thumbs/28d5231a-d475-469d-97f2-116d878cece7)
