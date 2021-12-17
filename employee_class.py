@@ -26,7 +26,7 @@ class Employee:
         while True:
             try:
                 selection = int(input('Enter your choice here (1, 2, 3, 4, 5 or 6): '))
-                if 0 <= int(selection) <= 13:
+                if 0 <= int(selection) <= 14:
                     return selection
                 else:
                     print("Invalid format. Please enter number between 1 and 6")

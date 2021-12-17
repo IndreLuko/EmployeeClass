@@ -38,7 +38,7 @@ class EmployeeManager:
                 self.employee_list.pop(index)
                 print(f"\nEmployee ID {employee_id} has been deleted!\n")
                 return employee_id
-                #TD (Technical Debt) - might be improved in future
+                # TD (Technical Debt) - might be improved in future
 
     def terminate(self, employee_id):
         for employee in self.employee_list:
@@ -53,9 +53,11 @@ class EmployeeManager:
                 employee.print()
 
     def change_phone(self):
+        phone = Employee.selection_phone_number()
+        new_phone = Employee.selection_new_phone_number()
         for employee in self.employee_list:
-            if employee.phone_number == Employee.selection_phone_number():
-                employee.phone_number = Employee.selection_new_phone_number()
+            if employee.phone_number == phone:
+                employee.phone_number = new_phone
                 employee.print()
 
     def get_id(self):
@@ -69,3 +71,8 @@ class EmployeeManager:
                     print("Employee ID you entered does not exist!")
             except ValueError:
                 print("Value error! Please enter valid Employee ID!")
+
+    def list_employee(self, employee_id):
+        for employee in self.employee_list:
+            if employee.employee_id == employee_id:
+                employee.print()

@@ -17,6 +17,7 @@ print("10. Assign new task")
 print("11. Complete a task")
 print("12. List all completed tasks")
 print("13. Change task status")
+print("14. Extract single employee's record")
 print('0 to quit')
 
 selection = 1
@@ -51,3 +52,5 @@ while selection != 0:
         task_manager.completed_task_list()
     elif selection == 13:
         task_manager.change_status(task_manager.get_id())
+    elif selection == 14:
+        employee_manager.list_employee(employee_manager.get_id())
